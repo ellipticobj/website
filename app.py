@@ -1,6 +1,8 @@
 from flask import *
+from flask_socketio import *
 
 app = Flask(__name__)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 projects = [
     {
