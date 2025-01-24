@@ -18,13 +18,10 @@
                     </div>
 
                     <div class="listlinks">
-                        {% if project.github %}
-                        <a href="{{ project.github }}" target="_blank">github</a>
-                        {% endif %}
+                        {% for link in project.links %}
+                        <a href="{{ link.url }}" target="_blank">{{ link.label }}</a>
                         <br>
-                        {% if project.pypi %}
-                        <a href="{{ project.pypi }}" target="_blank">pypi</a>
-                        {% endif %}
+                        {% endfor %}
                     </div>
                 </li>
                 {% endfor %}

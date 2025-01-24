@@ -96,6 +96,17 @@ footer {
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
 }
 
+a {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: var(--accent1_700);
+  font-weight: bold;
+}
+
+a:hover {
+  color: var(--accent1_500);
+}
 
 main {
   flex: 1;
@@ -122,13 +133,6 @@ nav {
 
 nav a {
   margin: 0 1rem;
-  text-decoration: none;
-  color: var(--accent1_700);
-  font-weight: bold;
-}
-
-nav a:hover {
-  color: var(--accent1_500);
 }
 
 section {
@@ -251,31 +255,6 @@ div.listlinks a:hover {
 .card p {
   font-size: 0.9rem;
   color: var(--neutral1_500);
-}
-
-.card a {
-  display: inline-block;
-  margin-top: 1rem;
-  text-decoration: none;
-  color: var(--accent1_700);
-  font-weight: bold;
-}
-
-.card a:hover {
-  color: var(--accent1_500);
-}
-
-#terminal {
-  width: 80%;
-  height: 80%;
-  background: #000;
-  border: 1px solid rgb(209, 209, 209);
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  font-family: monospace;
-  margin: 0;
-  align-items: left;
 }
 
 #output {

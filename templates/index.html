@@ -30,10 +30,12 @@
         </section>
 
         <section id="projects">
-            <h2>some of my projects</h2>
+            <a href="/projects">
+                <h2>some of my projects</h2>
+            </a>
             <div class="cardlist">
                 {% for project in projects %}
-                <div class="project">
+                <div class="card">
                     <h3>{{ project.name }}</h3>
                     <p>{{ project.description }}</p>
                     <a href="{{ project.link }}" target="_blank">View Project</a>
