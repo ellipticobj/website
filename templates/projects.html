@@ -5,10 +5,24 @@
         <link rel="stylesheet" href="/static/styles.css">
     </head>
     <body>
-        <h1>projects!</h1>
-        <!--basic imprementation for now i will style it better later-->
-        <ul>
-            <li><a href="/shells/example">example project</a></li>
-        </ul>
+        <header>
+            <h1>projects!</h1>
+        </header>
+        <section id="projects">
+            <div class="list">
+                {% for project in projects %}
+                <div class="listitem" onclick="window.location.href='{{ project.github }}';">
+                    <h3>{{ project.name }}</h3>
+                    <p>{{ project.description }}</p>
+                    {% if project.pypi %}
+                    <a href="{{ project.pypi }}" target="_blank">pypi</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        <footer>
+            
+        </footer>
     </body>
 </html>

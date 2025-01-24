@@ -81,6 +81,15 @@ header, footer {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+footer {
+  vertical-align: bottom
+}
+
+h1 {
+  text-align: center;
+  color: var(--accent1_700);
+}
+
 nav {
   display: flex;
   justify-content: center;
@@ -177,6 +186,46 @@ h2, h3 {
 }
 
 .card a:hover {
+  color: var(--accent1_500);
+}
+
+.list {
+  display: flex;
+  gap: 1rem;
+  padding: .5rem;
+  max-width: 100%;
+}
+
+.listitem {
+  flex: 0 0 auto;
+  background: --accent3_100;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  max-width: 300px;
+  text-align: center;
+}
+
+.listitem h3 {
+  margin: 0.5rem 0;
+  color: var(--accent1_600);
+}
+
+.listitem p {
+  font-size: 0.9rem;
+  color: var(--neutral1_500);
+}
+
+.listitem a {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: var(--accent1_700);
+  font-weight: bold;
+}
+
+.listitem a:hover {
   color: var(--accent1_500);
 }
 
