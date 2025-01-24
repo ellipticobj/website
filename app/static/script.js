@@ -1,8 +1,22 @@
-function openNav() {
-    document.getElementById("mySidebar").style.width = "60%";
-    document.getElementById("mySidebar").style.display = "block";
+const socket = io();
+
+const termout = document.getElementById('output');
+const termin = document.getElementById('input');
+
+terminalInput.addEventListener('keydown', (event) => {
+  if (event.key === "Enter") {
+    const command = termin.value;
+    termin.value = '';
+    appendToOutput(`$ ${command}`);
+    socket.emit('execute', { projname: projname, command  });
   }
-  
-  function closeNav() {
-    document.getElementById("mySidebar").style.display = "none";
-  }
+});
+
+socket.on('output', (data) => {
+  appendToOutput(data.output);
+});
+
+function appendToOutput(text) {
+  terminalOutput.innerHTML += `<div>${text}</div>`;
+  terminalOutput.scrollTop = terminalOutput.scrollHeight;
+}
