@@ -11,7 +11,7 @@ def index():
     return render_template('index.html')
 
 '''
-@app.route('/shells/example')
+@app.route('/projects/example')
 def projectshell(projname):
     projpath = os.path.join('projects', f"{projname}.py")
 
@@ -20,6 +20,11 @@ def projectshell(projname):
     else:
         return f"project {projname} not found", 404
 '''
+
+@app.route('/projects')
+def projectspage():
+    return render_template('projects.html')
+
 
 @socketio.on("execute")
 def execute(data):
@@ -44,4 +49,4 @@ def execute(data):
         emit('output', {'output': f"error: project {projname} not found"})
         
 if __name__ == '__main__':
-    socketio.run(app, host="0.0.0.0", port=7272)
+    socketio.run(app, host="0.0.0.0", port=7272, debug=True)

@@ -1,5 +1,7 @@
 const socket = io();
 
+const projname = window.projname;
+
 const termout = document.getElementById('output');
 const termin = document.getElementById('input');
 
@@ -8,7 +10,7 @@ terminalInput.addEventListener('keydown', (event) => {
     const command = termin.value;
     termin.value = '';
     appendToOutput(`$ ${command}`);
-    socket.emit('execute', { projname: projname, command  });
+    socket.emit('execute', { projname: projname, command: command  });
   }
 });
 
