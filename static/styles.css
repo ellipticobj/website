@@ -81,8 +81,13 @@ header, footer {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-footer {
-  vertical-align: bottom
+main {
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+  background: var(--accent1_10);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -130,6 +135,60 @@ section a:hover {
 
 h2, h3 {
   color: var(--accent1_600);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li.listitem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: var(--accent1_50);
+  border: 1px solid var(--accent1_200);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+div.listinfo {
+  max-width: 70%;
+}
+
+div.listinfo h3 {
+  margin: .7rem;
+  font-size: 1.2rem;
+  color: var(--accent1_700);
+}
+
+div.listinfo p {
+  margin: 1rem;
+  font-size: 0.9rem;
+  color: var(--neutral1_500);
+}
+
+div.listlinks {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+div.listlinks a {
+  display: inline-block;
+  margin-left: 1rem;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  margin-right: 1rem;
+  text-decoration: none;
+  color: var(--accent1_700);
+  font-weight: bold;
+}
+
+div.listlinks a:hover {
+  color: var(--accent1_500);
 }
 
 .social-links {
@@ -186,46 +245,6 @@ h2, h3 {
 }
 
 .card a:hover {
-  color: var(--accent1_500);
-}
-
-.list {
-  display: flex;
-  gap: 1rem;
-  padding: .5rem;
-  max-width: 100%;
-}
-
-.listitem {
-  flex: 0 0 auto;
-  background: --accent3_100;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  max-width: 300px;
-  text-align: center;
-}
-
-.listitem h3 {
-  margin: 0.5rem 0;
-  color: var(--accent1_600);
-}
-
-.listitem p {
-  font-size: 0.9rem;
-  color: var(--neutral1_500);
-}
-
-.listitem a {
-  display: inline-block;
-  margin-top: 1rem;
-  text-decoration: none;
-  color: var(--accent1_700);
-  font-weight: bold;
-}
-
-.listitem a:hover {
   color: var(--accent1_500);
 }
 

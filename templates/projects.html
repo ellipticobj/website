@@ -9,20 +9,40 @@
             <h1>projects!</h1>
         </header>
         <section id="projects">
-            <div class="list">
+            <ul class="list">
                 {% for project in projects %}
-                <div class="listitem" onclick="window.location.href='{{ project.github }}';">
-                    <h3>{{ project.name }}</h3>
-                    <p>{{ project.description }}</p>
-                    {% if project.pypi %}
-                    <a href="{{ project.pypi }}" target="_blank">pypi</a>
-                    {% endif %}
-                </div>
+                <li class="listitem">
+                    <div class="listinfo">
+                        <h3>{{ project.name }}</h3>
+                        <p>{{ project.description }}</p>
+                    </div>
+
+                    <div class="listlinks">
+                        {% if project.github %}
+                        <a href="{{ project.github }}" target="_blank">github</a>
+                        {% endif %}
+                        <br>
+                        {% if project.pypi %}
+                        <a href="{{ project.pypi }}" target="_blank">pypi</a>
+                        {% endif %}
+                    </div>
+                </li>
                 {% endfor %}
-            </div>
+            </ul>
         </section>
         <footer>
-            
+            <div class="social-links">
+                <h3>follow me</h3>
+                <a href="https://github.com/ellipticobj" target="_blank">Github</a>
+                <a href="https://www.twitter.com/ellipticobj" target="_blank">Twitter</a>
+                <a href="https://www.instagram.com/ellipticobjs" target="_blank">Instagram</a>
+                <a href="https://fxg.bsky.social" target="_blank">Bluesky</a>
+                <a href="http://t.me/ellipticobj" target="_blank">Telegram</a>
+                <a href="http://discordapp.com/users/973943523655164032" target="_blank">Discord</a>
+                <a href="http://steamcommunity.com/id/ellipticobj" target="_blank">Steam</a>
+                <a href="http://anilist.co/user/ellipticobj" target="_blank">Anilist</a>
+                <a href="http://last.fm/user/ellipticobj" target="_blank">last.fm</a>
+            </div>
         </footer>
     </body>
 </html>
