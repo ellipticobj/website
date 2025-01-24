@@ -71,9 +71,12 @@ body {
   font-family: 'Comfortaa', sans-serif;
   background-color: var(--accent1_0);
   color: var(--neutral1_700);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-header, footer {
+header {
   text-align: center;
   padding: 2rem 1rem;
   background-color: var(--accent1_50);
@@ -81,7 +84,21 @@ header, footer {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%; /* Make it span the entire width of the viewport */
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--accent1_50);
+  color: var(--accent1_700);
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
 main {
+  flex: 1;
   padding: 2rem;
   max-width: 800px;
   margin: auto;

@@ -32,45 +32,13 @@
         <section id="projects">
             <h2>some of my projects</h2>
             <div class="cardlist">
-                <div class="card">
-                    <h3>cli messenger app</h3>
-                    <p>a simple messenger app in the command line made in python</p>
-                    <a href="http://github.com/ellipticobj/cli-messenger">github</a>
+                {% for project in projects %}
+                <div class="project">
+                    <h3>{{ project.name }}</h3>
+                    <p>{{ project.description }}</p>
+                    <a href="{{ project.link }}" target="_blank">View Project</a>
                 </div>
-                <div class="card">
-                    <h3>material you pomodoro timer</h3>
-                    <p>a pomodoro study timer app made using jetpack compose in kotlin. </p>
-                    <a href="http://github.com/ellipticobj/studytimer">github</a>
-                </div>
-                <div class="card">
-                    <h3>random pip module</h3>
-                    <p>a small pip module that generates true random numbers using <a href="http://random.org/">random.org</a>'s api</p>
-                    <a href="http://github.com/ellipticobj/random-module">github</a>
-                    <a href="https://pypi.org/project/randomorg-api/">pypi</a>
-                </div>
-                <div class="card">
-                    <h3>password checker</h3>
-                    <p>small tool to check password strength or generate a new password</p>
-                    <a href="http://github.com/ellipticobj/password-checker" target="_blank">github</a>
-                </div>
-                <div class="card">
-                    <h3>unit converter</h3>
-                    <p>a command line based python program to convert different units or currencies</p>
-                    <a href="http://github.com/ellipticobj/unit-converter" target="_blank">github</a>
-                </div>
-                <div class="card">
-                    <h3>this website</h3>
-                    <p>a small simple website that i made to learn static web devving</p>
-                    <a href="http://github.com/ellipticobj/ellipticobj.github.io" target="_blank">github</a>
-                    <a href="http://ellipticobj.github.io" target="_blank">ellipticobj.github.io</a>
-                    <a href="http://luna.hackclub.app" target="_blank">luna.hackclub.app</a>
-                </div>
-                <div class="card">
-                    <h3>my github readme</h3>
-                    <p>a readmy for my github page that i used learn more about github actions</p>
-                    <a href="http://github.com/ellipticobj/ellipticobj" target="_blank">github</a>
-                    <a href="http://ellipticobj.github.io/ellipticobj" target="_blank">ellipticobj.github.io/ellipticobj</a>
-                </div>
+                {% endfor %}
             </div>
         </section>
 
