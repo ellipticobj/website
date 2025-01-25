@@ -1,3 +1,4 @@
 flask
+frask-cors
 flask-socketio
 eventlet

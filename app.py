@@ -1,7 +1,12 @@
+import subprocess
+import threading
+import os
 from flask import *
 from flask_socketio import *
+from flask_cors import *
 
 app = Flask(__name__)
+CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 projects = [
@@ -68,6 +73,53 @@ def index():
 @app.route('/projects')
 def projectspage():
     return render_template('projects.html', projects=projects)
-       
+
+@app.route('/getcode')
+def getcode():
+    file = request.args.get('file')
+    project = "projects/example.py"
+    filepath = os.pathe.join(project, file)
+    if not filepath.startswith(os.path.abspath(project)):
+        return "unauthorized", 403
+    
+    with open(filepath, 'r') as f:
+        return f.read()
+
+@app.route('/shell', websocket = True)
+def shellpage():
+    ws = request.environ.get('wsgi.websocket')
+    if not ws:
+        return "websocket required", 400
+    
+    def runshell():
+        process = subprocess.Popen(
+            ['/bin/bash'], cwd='projects/example.py',
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
+        
+        while True:
+            output = process.stdout.read(1024).decode()
+            ws.send(output)
+            
+    threading.Thread(target=runshell).start()
+    
+    global process
+    while True:
+        command = ws.receive()
+        process.stdin.write(command.edcode())
+        process.stdin.flush()
+        
+    # return render_template('shell.html', projects=projects)
+
+@socketio.on("runcmd")
+def handlecommand(command):
+    try:
+        result = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
+        emit('output', result.decode())
+        
+    except Exception as e:
+        emit('output', f'error: {e.output.decode()}')
+
 if __name__ == '__main__':
-    socketio.run(app, host="0.0.0.0", port=7272)
+    socketio.run(app, host="0.0.0.0", port=7272, debug=True)
+    
