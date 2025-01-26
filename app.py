@@ -72,14 +72,23 @@ def index():
     return render_template('index.html', projects=projects)
 
 @app.route('/projects')
+@app.route('/projects/')
 def projectspage():
     return render_template('projects.html', projects=projects)
 
+@app.route('/projects/json')
+@app.route('/projects/json/')
+def projectsapi():
+    projectdir = os.path.abspath('projects')
+    return jsonify(projects)
+
 @app.route('/shells')
+@app.route('/shells/')
 def shellpage():
     return render_template('shell.html')
 
 @app.route('/dimini')
+@app.route('/dimini/')
 def dimini():
     return render_template('dimini.html')
 
@@ -91,8 +100,10 @@ def onconnect():
     socketio.emit('output', {'data': intro}, namespace='/shells')
 
 @socketio.on('input', namespace='/shells') 
-def handleshellinput(data):
+def handleinput(data):
     global process 
+    projectdir = os.path.abspath('projects')
+    
     if process is None:
         process = subprocess.Popen(
             ['/bin/bash'],
@@ -105,12 +116,41 @@ def handleshellinput(data):
         )
 
         def readoutput():
-            for line in iter(process.stdout.readline, ''):
-                socketio.emit('output', {'data': line}, namespace='/shells')
-            socketio.emit('output', {'data': '\n$ '}, namespace='/shells')
+            global process
+
+            try:
+                for line in iter(process.stdout.readline, '\n'):
+                    if line:
+                        socketio.emit('output', {'data': line}, namespace='/shells')
+                socketio.emit('output', {'data': '\n$ '}, namespace='/shells')
+                
+            except Exception as e:
+                print(f"error at readoutput(): {e}")
+                
+            finally:
+                if process:
+                    process.stdout.close()
+                    process.stdin.close()
+                    process.terminate()
+                    process = None
+                socketio.emit('output', {'data': '\n$ '}, namespace='/shells')
 
         threading.Thread(target=readoutput(), daemon=True).start()
-
+    
+    if data.startswith("python "):
+        script = data.split(" ")[1]
+        scriptpath = os.path.abspath(os.path.join(projectdir, script))
+        
+        if scriptpath.startswith(projectdir) and os.path.exists(scriptpath):
+            process.stdin.write(data + '\n')
+            process.stdin.flush()
+            
+        else:
+            socketio.emit('output', {'data': 'error: file not found or unauthorized\n'}, namespace='/shells')
+    
+    else:
+        socketio.emit('output', {'data': 'error: only python scripts can be executed\n'}, namespace='/shells')
+    
     if process.stdin:
         process.stdin.write(data + '\n')
         process.stdin.flush()
@@ -121,17 +161,11 @@ def handleshellinput(data):
 def handledisconnect():
     global process
     if process:
-        process.terminate()
-        process = None
-
-@socketio.on("runcmd")
-def handlecommand(command):
-    try:
-        result = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
-        emit('output', result.decode())
-        
-    except Exception as e:
-        emit('output', f'error: {e.output.decode()}')
+        try:
+            process.terminate()
+            process = None
+        except Exception as e:
+            print(f"error at handledisconnect(): {e}")
 
 @app.route('/getcode')
 def getcode():
@@ -143,7 +177,7 @@ def getcode():
         return "unauthorized", 403
 
     if not os.path.exists(filepath):
-        return f"File {file} not found", 404
+        return f"{file} not found", 404
 
     with open(filepath, 'r') as f:
         return f.read()
