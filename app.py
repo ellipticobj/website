@@ -75,20 +75,13 @@ def index():
 def projectspage():
     return render_template('projects.html', projects=projects)
 
-@app.route('/getcode')
-def getcode():
-    file = request.args.get('file')
-    project = "projects/example.py"
-    filepath = os.path.join(project, file)
-    if not filepath.startswith(os.path.abspath(project)):
-        return "unauthorized", 403
-    
-    with open(filepath, 'r') as f:
-        return f.read()
-
 @app.route('/shells')
 def shellpage():
     return render_template('shell.html')
+
+@app.route('/dimini')
+def dimini():
+    return render_template('dimini.html')
 
 @socketio.on('input', namespace='/shells') 
 def handleshellinput(data):
@@ -96,7 +89,7 @@ def handleshellinput(data):
     if process is None:
         process = subprocess.Popen(
             ['/bin/bash'],
-            cwd='projects/example',
+            cwd='projects/',
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
@@ -129,6 +122,21 @@ def handlecommand(command):
         
     except Exception as e:
         emit('output', f'error: {e.output.decode()}')
+
+@app.route('/getcode')
+def getcode():
+    file = request.args.get('file', 'example.py')
+    projectdir = os.path.abspath('projects')
+    filepath = os.path.join(projectdir, file)
+
+    if not filepath.startswith(projectdir):
+        return "unauthorized", 403
+
+    if not os.path.exists(filepath):
+        return f"File {file} not found", 404
+
+    with open(filepath, 'r') as f:
+        return f.read()
 
 if __name__ == '__main__':
     socketio.run(app, host="0.0.0.0", port=7272, debug=True)

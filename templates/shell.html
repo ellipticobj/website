@@ -41,6 +41,22 @@
             socket.on('disconnect', () => {
                 term.write('\r\n[disconnected from server]\r\n')
             })
+
+            fetch('/getcode?file=example.py')
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('Failed to load file: ' + response.status);
+                    }
+                })
+                .then(code => {
+                    editor.setValue(code);
+                })
+                .catch(error => {
+                    console.error('Error loading code:', error);
+                    editor.setValue('// Failed to load file.');
+                });
         </script>
     </body>
 </html>
