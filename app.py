@@ -83,6 +83,13 @@ def shellpage():
 def dimini():
     return render_template('dimini.html')
 
+@socketio.on('connect', namespace='/shells')
+def onconnect():
+    intro = '''welcome to the interactive shell!
+'''
+
+    socketio.emit('output', {'data': intro}, namespace='/shells')
+
 @socketio.on('input', namespace='/shells') 
 def handleshellinput(data):
     global process 
@@ -100,12 +107,15 @@ def handleshellinput(data):
         def readoutput():
             for line in iter(process.stdout.readline, ''):
                 socketio.emit('output', {'data': line}, namespace='/shells')
+            socketio.emit('output', {'data': '\n$ '}, namespace='/shells')
 
         threading.Thread(target=readoutput(), daemon=True).start()
 
     if process.stdin:
         process.stdin.write(data + '\n')
         process.stdin.flush()
+    else:
+        socketio.emit('output', {'data': 'error: process not running\n'}, namespace='/shells')
 
 @socketio.on('disconnect', namespace='/shells')
 def handledisconnect():

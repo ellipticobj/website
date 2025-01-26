@@ -30,16 +30,20 @@
                 readOnly: true
             });
 
-            socket.on('output', (data) => {
-                term.write(data.data);
-            });
-
             term.onData(data => {
                 socket.emit('input', data);
             });
 
+            socket.on('output', (msg) => {
+                term.write(msg.data);
+
+                if (!msg.data.endsWith('$ ')) {
+                    term.write('\n$ ');
+                }
+            });
+
             socket.on('disconnect', () => {
-                term.write('\r\n[disconnected from server]\r\n')
+                term.write('\r\n[disconnected from server]\r\n');
             })
 
             fetch('/getcode?file=example.py')
