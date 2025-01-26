@@ -3,16 +3,26 @@
     <head>
         <title>shell test</title>
         <link rel="stylesheet" href="/static/styles.css">
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/codemirror.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/xterm/4.18.0/xterm.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/codemirror.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/mode/python/python.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/4.18.0/xterm.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css">
+        <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
+        
+        <script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script>
     </head>
     <body>
         <textarea id="codeViewer"></textarea>
-        {% comment %} test code for now, will use jinja for different projects soon {% endcomment %}
+        <div id="terminal" style="height: 300px; width: 80%"></div>
+ 
+        <!-- test code for now, will use jinja for different projects soon  -->
         <script>
+            const socket = io('http://127.0.0.1:7272/shells')
+            const term = new Terminal();
+            term.open(document.getElementById('terminal'));
+
             const editor = CodeMirror.fromTextArea(document.getElementById('codeViewer'), {
                 mode: "python",
                 theme: "default", 
@@ -20,20 +30,17 @@
                 readOnly: true
             });
 
-            fetch('/get_code?file=example.py')
-                .then(response => response.text())
-                .then(code => editor.setValue(code));
-        </script>
+            socket.on('output', (data) => {
+                term.write(data.data);
+            });
 
-        <div id="terminal" style="height: 300px; width: 80%"></div>
+            term.onData(data => {
+                socket.emit('input', data);
+            });
 
-        <script>
-            const term = new Terminal();
-            term.open(document.getElementById('terminal'));
-
-            const socket = new WebSocket('ws://localhost:7272/shell');
-            socket.onmessage = (event) => term.write(event.data);
-            term.onData(data => socket.send(data));
+            socket.on('disconnect', () => {
+                term.write('\r\n[disconnected from server]\r\n')
+            })
         </script>
     </body>
 </html>

@@ -65,6 +65,7 @@ projects = [
     }
 ]
 
+process = None
 
 @app.route('/')
 def index():
@@ -78,38 +79,47 @@ def projectspage():
 def getcode():
     file = request.args.get('file')
     project = "projects/example.py"
-    filepath = os.pathe.join(project, file)
+    filepath = os.path.join(project, file)
     if not filepath.startswith(os.path.abspath(project)):
         return "unauthorized", 403
     
     with open(filepath, 'r') as f:
         return f.read()
 
-@app.route('/shell', websocket = True)
+@app.route('/shells')
 def shellpage():
-    ws = request.environ.get('wsgi.websocket')
-    if not ws:
-        return "websocket required", 400
-    
-    def runshell():
+    return render_template('shell.html')
+
+@socketio.on('input', namespace='/shells') 
+def handleshellinput(data):
+    global process 
+    if process is None:
         process = subprocess.Popen(
-            ['/bin/bash'], cwd='projects/example.py',
-            stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            ['/bin/bash'],
+            cwd='projects/example',
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            bufsize=1
         )
-        
-        while True:
-            output = process.stdout.read(1024).decode()
-            ws.send(output)
-            
-    threading.Thread(target=runshell).start()
-    
-    global process
-    while True:
-        command = ws.receive()
-        process.stdin.write(command.edcode())
+
+        def readoutput():
+            for line in iter(process.stdout.readline, ''):
+                socketio.emit('output', {'data': line}, namespace='/shells')
+
+        threading.Thread(target=readoutput(), daemon=True).start()
+
+    if process.stdin:
+        process.stdin.write(data + '\n')
         process.stdin.flush()
-        
-    # return render_template('shell.html', projects=projects)
+
+@socketio.on('disconnect', namespace='/shells')
+def handledisconnect():
+    global process
+    if process:
+        process.terminate()
+        process = None
 
 @socketio.on("runcmd")
 def handlecommand(command):
