@@ -1,13 +1,9 @@
-import subprocess
-import threading
 import os
 from flask import *
-from flask_socketio import *
 from flask_cors import *
 
 app = Flask(__name__)
 CORS(app)
-socketio = SocketIO(app, cors_allowed_origins="*")
 
 projects = [
     {
@@ -92,96 +88,5 @@ def shellpage():
 def dimini():
     return render_template('dimini.html')
 
-@socketio.on('connect', namespace='/shells')
-def onconnect():
-    intro = '''welcome to the interactive shell!
-'''
-
-    socketio.emit('output', {'data': intro}, namespace='/shells')
-
-@socketio.on('input', namespace='/shells') 
-def handleinput(data):
-    global process 
-    projectdir = os.path.abspath('projects')
-    
-    if process is None:
-        process = subprocess.Popen(
-            ['/bin/bash'],
-            cwd='projects/',
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            bufsize=1
-        )
-
-        def readoutput():
-            global process
-
-            try:
-                for line in iter(process.stdout.readline, '\n'):
-                    if line:
-                        socketio.emit('output', {'data': line}, namespace='/shells')
-                socketio.emit('output', {'data': '\n$ '}, namespace='/shells')
-                
-            except Exception as e:
-                print(f"error at readoutput(): {e}")
-                
-            finally:
-                if process:
-                    process.stdout.close()
-                    process.stdin.close()
-                    process.terminate()
-                    process = None
-                socketio.emit('output', {'data': '\n$ '}, namespace='/shells')
-
-        threading.Thread(target=readoutput(), daemon=True).start()
-    
-    if data.startswith("python "):
-        script = data.split(" ")[1]
-        scriptpath = os.path.abspath(os.path.join(projectdir, script))
-        
-        if scriptpath.startswith(projectdir) and os.path.exists(scriptpath):
-            process.stdin.write(data + '\n')
-            process.stdin.flush()
-            
-        else:
-            socketio.emit('output', {'data': 'error: file not found or unauthorized\n'}, namespace='/shells')
-    
-    else:
-        socketio.emit('output', {'data': 'error: only python scripts can be executed\n'}, namespace='/shells')
-    
-    if process.stdin:
-        process.stdin.write(data + '\n')
-        process.stdin.flush()
-    else:
-        socketio.emit('output', {'data': 'error: process not running\n'}, namespace='/shells')
-
-@socketio.on('disconnect', namespace='/shells')
-def handledisconnect():
-    global process
-    if process:
-        try:
-            process.terminate()
-            process = None
-        except Exception as e:
-            print(f"error at handledisconnect(): {e}")
-
-@app.route('/getcode')
-def getcode():
-    file = request.args.get('file', 'example.py')
-    projectdir = os.path.abspath('projects')
-    filepath = os.path.join(projectdir, file)
-
-    if not filepath.startswith(projectdir):
-        return "unauthorized", 403
-
-    if not os.path.exists(filepath):
-        return f"{file} not found", 404
-
-    with open(filepath, 'r') as f:
-        return f.read()
-
 if __name__ == '__main__':
-    socketio.run(app, host="0.0.0.0", port=7272, debug=True)
-    
+    app.run(host='0.0.0.0', port=7272)
