@@ -16,7 +16,7 @@
             <h1>Hello, I'm Natalie!</h1>
             <p>ˈnæ əli - she/her - high school student</p>
         </header>
-        
+
         <nav>
             <div class="nav-links">
                 <a href="#about",>about</a>
@@ -37,24 +37,6 @@
             <p></p>
         </section>
 
-        <section id="projects">
-            <a href="/projects">
-                <h2>some of my projects</h2>
-            </a>
-            <div class="cardlist">
-                {% for project in projects %}
-                <div class="card">
-                    <h3>{{ project.name }}</h3>
-                    <p>{{ project.description }}</p>
-                    {% for link in project.links %}
-                        <a href="{{ link.url }}" target="_blank">{{ link.label }}</a>
-                        <br>
-                    {% endfor %}
-                </div>
-                {% endfor %}
-            </div>
-        </section>
-
         <section id="skills">
             <h2>skills</h2>
             <p>i am proficient in python</p>
@@ -71,6 +53,24 @@
                 <li><a href="" target="_blank" rel="noopener noreferrer">YCEP Central CTF</a></li>
             </ul>
             <p>i have achieved silver and multiple bronze in <a href="http://sasmo.sg" target="_blank" rel="noopener noreferrer">SASMO</a></p>
+        </section>
+
+        <section id="projects">
+            <a href="/projects">
+                <h2>some of my projects</h2>
+            </a>
+            <div class="cardlist">
+                {% for project in projects %}
+                <div class="card">
+                    <h3>{{ project.name }}</h3>
+                    <p>{{ project.description }}</p>
+                    {% for link in project.links %}
+                        <a href="{{ link.url }}" target="_blank">{{ link.label }}</a>
+                        <br>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
         </section>
 
         <section id="setup">

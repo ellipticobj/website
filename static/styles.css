@@ -290,6 +290,38 @@ div.listlinks a:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* 
+alternate card style 
+
+card {
+  background: var(--accent1_0);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card a {
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--accent1_500);
+  color: var(--accent1_0);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.5s ease;
+}
+
+.card a:hover {
+  background-color: var(--accent1_600)
+} */
+
 .homelink {
   position: absolute;
   left: 20px;
@@ -384,8 +416,6 @@ div.listlinks a:hover {
   color: var(--accent1_700)
 }
 
-
-
 @media (max-width: 768px) {
   #menu-toggle {
     display: block;
@@ -393,39 +423,17 @@ div.listlinks a:hover {
   }
 
   .cardlist {
+    overflow-x: initial;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1rem;
+    gap: 0rem;
     padding: 1rem 0;
   }
 
   .card {
-    background: var(--accent1_0);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-  }
-
-  .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .card a {
-    display: inline-block;
-    margin: 0.5rem;
-    padding: 0.5rem 1rem;
-    background-color: var(--accent1_500);
-    color: var(--accent1_0);
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background-color 0.5s ease;
-  }
-
-  .card a:hover {
-    background-color: var(--accent1_600)
+    margin: 1rem;
+    max-width: 100%;
+    min-width: none;
   }
 
   .nav-links {
