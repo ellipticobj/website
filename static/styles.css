@@ -71,9 +71,9 @@ body {
   font-family: 'Comfortaa', sans-serif;
   background-color: var(--accent1_0);
   color: var(--neutral1_700);
-  display: flex;
+  line-height: 1.6;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh
 }
 
 header {
@@ -95,7 +95,6 @@ footer {
   background-color: var(--accent1_50);
   color: var(--accent1_700);
   margin-top: auto;
-  /* box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1); */
 }
 
 a {
@@ -119,27 +118,34 @@ main {
   margin: auto;
   background: var(--accent1_10);
   border-radius: 12px;
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 
 h1 {
   text-align: center;
   color: var(--accent1_700);
+  font-size: 2.2rem;
 }
 
-h2, h3 {
+h2 {
   color: var(--accent1_600);
+  font-size: 1.7rem;
+}
+
+h3 {
+  color: var(--accent1_500);
+  font-size: 1.3rem;
 }
 
 nav {
-  position: sticky;
-  top: 0;
   display: flex;
   justify-content: center;
+  gap: 1.5rem;
+  position: sticky;
+  top: 0;
   background-color: var(--accent1_50);
-  padding: 1rem 0;
+  padding: 1rem;
   z-index: 1000;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav a {
@@ -163,8 +169,6 @@ section {
   margin-bottom: 3rem;
   background: var(--accent1_10);
   border-radius: 12px;
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-  color: var(--accent1_700);
 }
 
 section a {
@@ -190,7 +194,6 @@ li.listitem {
   background: var(--accent1_50);
   border: 1px solid var(--accent1_200);
   border-radius: 8px;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
 
 div.listinfo {
@@ -251,7 +254,13 @@ div.listlinks a:hover {
   gap: 1rem;
   padding: .5rem;
   max-width: 100%;
+  /* -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; */
 }
+
+/* .cardlist::-webkit-scrollbar {
+  display: none;
+} */
 
 .card {
   flex: 0 0 auto;
@@ -283,11 +292,69 @@ div.listlinks a:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* 
+alternate card style 
+
+card {
+  background: var(--accent1_0);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card a {
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--accent1_500);
+  color: var(--accent1_0);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.5s ease;
+}
+
+.card a:hover {
+  background-color: var(--accent1_600)
+} */
+
 .homelink {
   position: absolute;
   left: 20px;
   transform: translateY(-50%);
   text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* scrollbar-width: none; */
+}
+
+/* .nav-links::-webkit-scrollbar {
+  display: none;
+} */
+
+.nav-links a {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: var(--accent1_700);
+  border-radius: 8px;
+  transition: background-color 0.5s ease;
+}
+
+.nav-links a:hover {
+  background-color: var(--accent1_100);
 }
 
 #output {
@@ -305,8 +372,8 @@ div.listlinks a:hover {
 
 #fab {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 25px;
+  right: 25px;
   width: 72px;
   height: 72px;
   border: none;
@@ -340,4 +407,77 @@ div.listlinks a:hover {
   transform: scale(0.95);
   background-color: var(--accent1_700);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);;
+}
+
+#menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--accent1_700)
+}
+
+@media (max-width: 768px) {
+  #menu-toggle {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .cardlist {
+    overflow-x: initial;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0rem;
+    padding: 1rem 0;
+  }
+
+  .card {
+    margin: 1rem;
+    max-width: 100%;
+    min-width: none;
+  }
+
+  .nav-links {
+    gap: 1rem;
+    padding: 0 1rem 0.5rem;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .social-liks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  footer {
+    position: relative;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  section {
+    padding: 1.5rem;
+    width: 70%;
+    background: var(--accent1_10);
+    border-radius: 12px;
+    margin: none;
+  }
 }
