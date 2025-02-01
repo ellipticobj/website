@@ -8,8 +8,8 @@
         <title>meow</title>
 
         <script type="module" src="https://cdn.jsdelivr.net/npm/@material/web@latest"></script>
+        <script src="static/script.js"></script>
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap">
         <link rel="stylesheet" href="static/styles.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_upward" />
     </head>
@@ -19,12 +19,14 @@
             <p>ˈnæ əli - she/her - high school student</p>
         </header>
         <nav>
-            <a href="#about">about</a>
-            <a href="#projects">projects</a>
-            <a href="#skills">skills</a>
-            <a href="#achievements">achievements</a>
-            <a href="#setup">setup</a>
-            <a href="#contact">contact</a>
+            <div class="nav-links">
+                <a href="#about",>about</a>
+                <a href="#projects">projects</a>
+                <a href="#skills">skills</a>
+                <a href="#achievements">achievements</a>
+                <a href="#setup">setup</a>
+                <a href="#contact">contact</a>
+            </div>
         </nav>
 
         <section id="about">
@@ -43,7 +45,7 @@
             <div class="cardlist">
                 {% for project in projects %}
                 <div class="card">
-                    <h2>{{ project.name }}</h2>
+                    <h3>{{ project.name }}</h3>
                     <p>{{ project.description }}</p>
                     {% for link in project.links %}
                         <a href="{{ link.url }}" target="_blank">{{ link.label }}</a>
@@ -115,24 +117,25 @@
         </button>
 
         <script>
-          const fab = document.getElementById('fab');
-          fab.addEventListener('click', () => {
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth'
+            const fab = document.getElementById('fab');
+            fab.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
-          });
 
-          window.addEventListener('scroll', () => {
-            if (window.scrollY > 200) {
-              fab.classList.add('visible');
-            } else {
-              fab.classList.remove('visible');
-            }
-          });
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 1) {
+                    fab.classList.add('visible');
+                } else {
+                    fab.classList.remove('visible');
+                }
+            });
 
-          fab.classList.remove('visible');
-          </script>
+            fab.classList.remove('visible');
+            console.log('script.js loaded');
+        </script>
     </body>
 </html>
 
