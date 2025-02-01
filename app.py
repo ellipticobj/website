@@ -8,54 +8,53 @@ CORS(app)
 projects = [
     {
         "name": "cli messenger app",
-        "description": "A simple messenger app in the command line made in Python.",
+        "description": "a simple messenger app in the command line made in python",
         "links": [
-            {"label": "GitHub", "url": "http://github.com/ellipticobj/cli-messenger"}
+            {"label": "github", "url": "http://github.com/ellipticobj/cli-messenger"}
         ]
     },
     {
         "name": "material you pomodoro timer",
-        "description": "A pomodoro study timer app made using Jetpack Compose in Kotlin.",
+        "description": "a pomodoro study timer app made using jetpack rompose in kotlin",
         "links": [
-            {"label": "GitHub", "url": "http://github.com/ellipticobj/studytimer"}
+            {"label": "github", "url": "http://github.com/ellipticobj/studytimer"}
         ]
     },
     {
         "name": "random pip module",
-        "description": "A small pip module that generates true random numbers using random.org's API.",
+        "description": "a small pip module that generates true random numbers using random.org's api",
         "links": [
-            {"label": "GitHub", "url": "http://github.com/ellipticobj/random-module"},
-            {"label": "PyPI", "url": "https://pypi.org/project/randomorg-api/"}
+            {"label": "github", "url": "http://github.com/ellipticobj/random-module"},
+            {"label": "pypi", "url": "https://pypi.org/project/randomorg-api/"}
         ]
     },
     {
         "name": "password checker",
-        "description": "Small tool to check password strength or generate a new password.",
+        "description": "small tool to check password strength or generate a new password",
         "links": [
-            {"label": "GitHub", "url": "http://github.com/ellipticobj/password-checker"}
+            {"label": "github", "url": "http://github.com/ellipticobj/password-checker"}
         ]
     },
     {
         "name": "unit converter",
-        "description": "A command line-based Python program to convert different units or currencies.",
+        "description": "a command line-based python program to convert different units or currencies",
         "links": [
-            {"label": "GitHub", "url": "http://github.com/ellipticobj/unit-converter"}
+            {"label": "github", "url": "http://github.com/ellipticobj/unit-converter"}
         ]
     },
     {
         "name": "this website",
-        "description": "A small simple website that I made to learn static web development.",
+        "description": "a small simple website that i made to learn static web development",
         "links": [
-            {"label": "GitHub", "url": "http://github.com/ellipticobj/ellipticobj.github.io"},
-            {"label": "ellipticobj.github.io", "url": "http://ellipticobj.github.io"},
+            {"label": "github", "url": "http://github.com/ellipticobj/ellipticobj.github.io"},
             {"label": "luna.hackclub.app", "url": "http://luna.hackclub.app"}
         ]
     },
     {
         "name": "my github readme",
-        "description": "A README for my GitHub page that I used to learn more about GitHub Actions.",
+        "description": "a readme for my github page that i used to learn more about gitHub actions",
         "links": [
-            {"label": "GitHub", "url": "http://github.com/ellipticobj/ellipticobj"},
+            {"label": "github", "url": "http://github.com/ellipticobj/ellipticobj"},
             {"label": "ellipticobj.github.io/ellipticobj", "url": "http://ellipticobj.github.io/ellipticobj"}
         ]
     }
