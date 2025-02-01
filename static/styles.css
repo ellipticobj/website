@@ -369,7 +369,8 @@ card {
 
 .nav-links a[aria-current="page"] {
   background-color: var(--accent1_500);
-  
+  color: var(--accent1_0) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* .nav-links a {
@@ -394,15 +395,15 @@ card {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
-  background: rgba(255, 0, 221, 0.05);
+  width: 40px;
+  height: 40px;
+  background: var(--accent1_500);
   border-radius: 50%;
   display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba (255, 0, 221, 0.05);
+  box-shadow: 0 2px 4px rgba (0, 0, 0, 0.2);
   z-index: 100;
   transition: opacity 0.5s ease;
 }
@@ -412,7 +413,12 @@ card {
 }
 
 .scroll-arrow:hover {
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--accent1_600);
+}
+
+.scroll-arrow span {
+  color: var(--accent1_0);
+  font-size: 25px;
 }
 
 .scroll-arrow.left {
@@ -523,7 +529,7 @@ card {
 
   .nav-links {
     gap: 0.25rem;
-    padding: 0 25rem 0;
+    padding: 0 1rem 0.5rem;
   }
 
   .nav-links a {

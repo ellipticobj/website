@@ -50,4 +50,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     fab.classList.remove('visible');
+
+    function setActiveNavLink() {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < 100 && rect.bottom >= 100) {
+                navLinks.forEach(link => {
+                    link.removeAttribute('aria-current');
+                    if (link.getAttribute('href') == `#${section.id}`) {
+                        link.setAttribute('aria-current', 'page');
+                    }
+                });
+            }
+        })
+    }
+
+    window.addEventListener('resize', setActiveNavLink);
+    window.addEventListener('scroll', setActiveNavLink);
 });
