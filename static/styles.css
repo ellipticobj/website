@@ -93,7 +93,6 @@ footer {
   background-color: var(--accent1_50);
   color: var(--accent1_700);
   margin-top: auto;
-  /* box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1); */
 }
 
 a {
@@ -117,7 +116,6 @@ main {
   margin: auto;
   background: var(--accent1_10);
   border-radius: 12px;
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 
 h1 {
@@ -194,7 +192,6 @@ li.listitem {
   background: var(--accent1_50);
   border: 1px solid var(--accent1_200);
   border-radius: 8px;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
 
 div.listinfo {
@@ -255,13 +252,13 @@ div.listlinks a:hover {
   gap: 1rem;
   padding: .5rem;
   max-width: 100%;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  /* -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; */
 }
 
-.cardlist::-webkit-scrollbar {
+/* .cardlist::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .card {
   flex: 0 0 auto;
@@ -306,12 +303,12 @@ div.listlinks a:hover {
   padding: 0 1rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
 }
 
-.nav-links::-webkit-scrollbar {
+/* .nav-links::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .nav-links a {
   flex-shrink: 0;
@@ -341,8 +338,8 @@ div.listlinks a:hover {
 
 #fab {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 25px;
+  right: 25px;
   width: 72px;
   height: 72px;
   border: none;
@@ -467,10 +464,8 @@ div.listlinks a:hover {
   }
 
   section {
-    padding: 1rem;
-    margin: 1rem;
-    margin-bottom: 1.5rem;
-    width: 90%;
+    padding: 2rem;
+    width: 70%;
     background: var(--accent1_10);
     border-radius: 12px;
   }
