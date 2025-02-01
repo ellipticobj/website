@@ -45,7 +45,10 @@
                 <div class="card">
                     <h2>{{ project.name }}</h2>
                     <p>{{ project.description }}</p>
-                    <a href="{{ project.link }}" target="_blank">View Project</a>
+                    {% for link in project.links %}
+                        <a href="{{ link.url }}" target="_blank">{{ link.label }}</a>
+                        <br>
+                    {% endfor %}
                 </div>
                 {% endfor %}
             </div>
@@ -110,7 +113,7 @@
                 arrow_upward
                 </span>
         </button>
-        
+
         <script>
           const fab = document.getElementById('fab');
           fab.addEventListener('click', () => {

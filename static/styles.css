@@ -258,12 +258,14 @@ div.listlinks a:hover {
   background: var(--accent2_50);
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 12px;
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-  padding: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
   max-width: 300px;
   text-align: center;
-  transform: translateY(5px);
-  transition: transform 0.5s ease;
+  transform: scale(1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .card h3 {
@@ -277,8 +279,8 @@ div.listlinks a:hover {
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  transition: transform 0.5s ease;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .homelink {
@@ -305,22 +307,22 @@ div.listlinks a:hover {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 56px;
-  height: 56px;
+  width: 72px;
+  height: 72px;
   border: none;
-  border-radius: 50%;
+  border-radius: 30%;
   background-color: var(--accent1_500);
   color: var(--accent1_0);
-  font-size: 24px;
+  font-size: 32px;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.5s ease, background-color 0.5s ease;
+  transition: opacity 0.2s ease, transform 0.5s ease, background-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 #fab.visible {
@@ -329,11 +331,13 @@ div.listlinks a:hover {
 }
 
 #fab:hover {
-  background-color: var(--accent1_600);
-  transform: scale(1.1);
+  transform: scale(1.05);
+  background-color: var(--accent1_500);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 #fab:active {
+  transform: scale(0.95);
   background-color: var(--accent1_700);
-  transform: scale(0.9);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);;
 }
