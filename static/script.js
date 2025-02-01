@@ -34,12 +34,22 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.scroll-container').forEach(setupScrollHints);
     
     const fab = document.getElementById('fab');
-    fab.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    const footer = document.querySelector('footer');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                fab.classList.remove('visible');
+            } else if (window.scrollY > 100) {
+                fab.classList.add('visible');
+            }
         });
+    }, {
+        rootMargin: '0px',
+        threshold: 0.1
     });
+
+    observer.observe(footer);
     
     window.addEventListener('scroll', () => {
         if (window.scrollY > 1) {
@@ -47,6 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             fab.classList.remove('visible');
         }
+    });
+
+    fab.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
     
     fab.classList.remove('visible');

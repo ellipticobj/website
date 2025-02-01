@@ -96,6 +96,7 @@ footer {
   color: var(--accent1_700);
   margin-top: auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 a {
@@ -478,7 +479,11 @@ card {
   z-index: 1000;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.5s ease, background-color 0.5s ease, box-shadow 0.5s ease;
+  transition: 
+    opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+    background-color 0.5s ease, 
+    box-shadow 0.5s ease;
 }
 
 #fab.visible {
