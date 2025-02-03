@@ -1,5 +1,5 @@
 # portfolio
-this repo is for my personal portfolio.  
-i made this so that i have a portfolio (obvious) and so that i can learn a bit of web dev :3  
+this is my personal portfolio!!!  
+i try my best to stick to [material design 3](m3.material.io)'s design language
 
-visit my portfolio at [luna.hackclub.app](http://luna.hackclub.app)
+visit my portfolio at [luna.hackclub.app](http://luna.hackclub.app) :3
