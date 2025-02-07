@@ -7,10 +7,24 @@ CORS(app)
 
 projects = [
     {
-        "name": "cli messenger app",
-        "description": "a simple messenger app in the command line made in python",
+        "name": "sigma",
+        "description": "a simple programming language",
         "links": [
-            {"label": "github", "url": "http://github.com/ellipticobj/cli-messenger"}
+            {"label": "github", "url": "http://github.com/dimini171/sigma"}
+        ]
+    },
+    {
+        "name": "alpha",
+        "description": "a stace oriented programming language",
+        "links": [
+            {"label": "github", "url": "https://github.com/ellipticobj/alpha"}
+        ]
+    },
+    {
+        "name": "cuter",
+        "description": "a simple messenger app in the command line",
+        "links": [
+            {"label": "github", "url": "http://github.com/ellipticobj/cuter"}
         ]
     },
     {
