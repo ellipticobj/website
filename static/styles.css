@@ -234,6 +234,13 @@ div.listlinks a:hover {
     color: var(--accent1_500);
 }
 
+.webrings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
 .social-links {
     text-align: center;
     margin-top: 2rem;
