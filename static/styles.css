@@ -239,6 +239,8 @@ div.listlinks a:hover {
     flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
+    text-align: center;
+    justify-content: center;
 }
 
 .social-links {
