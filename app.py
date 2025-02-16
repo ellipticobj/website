@@ -109,7 +109,7 @@ def dimini():
     return render_template('dimini.html')
 
 if __name__ == '__main__':
-    dev = True
+    dev = False
     if dev:
         app.run(host='0.0.0.0', port=7272, debug=True)
     else:
