@@ -28,6 +28,13 @@ projects = [
         ]
     },
     {
+        "name": "scrap",
+        "description": "a small vim-like notetaking app in the terminal, made in python",
+        "links": [
+            {"label": "github", "url": "http://github.com/ellipticobj/scrap"}
+        ]
+    },
+    {
         "name": "material you pomodoro timer",
         "description": "a pomodoro study timer app made using jetpack rompose in kotlin",
         "links": [
@@ -102,4 +109,9 @@ def dimini():
     return render_template('dimini.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=7272)
+    dev = True
+    if dev:
+        app.run(host='0.0.0.0', port=7272, debug=True)
+    else:
+        from waitress import serve
+        serve(app, host="0.0.0.0", port=8080)
