@@ -1,9 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>projects</title>
-        <link rel="stylesheet" href="/static/styles.css">
+        <link rel="stylesheet" href="/static/styles.css" />
+        <link
+            rel="shortcut icon"
+            href="{{ url_for('static', filename='favicon.ico') }}"
+        />
     </head>
     <body>
         <header>
@@ -21,8 +25,10 @@
 
                     <div class="listlinks">
                         {% for link in project.links %}
-                        <a href="{{ link.url }}" target="_blank">{{ link.label }}</a>
-                        <br>
+                        <a href="{{ link.url }}" target="_blank"
+                            >{{ link.label }}</a
+                        >
+                        <br />
                         {% endfor %}
                     </div>
                 </li>
@@ -32,15 +38,33 @@
         <footer>
             <div class="social-links">
                 <h3>follow me</h3>
-                <a href="https://github.com/ellipticobj" target="_blank">Github</a>
-                <a href="https://www.twitter.com/ellipticobj" target="_blank">Twitter</a>
-                <a href="https://www.instagram.com/ellipticobjs" target="_blank">Instagram</a>
+                <a href="https://github.com/ellipticobj" target="_blank"
+                    >Github</a
+                >
+                <a href="https://www.twitter.com/ellipticobj" target="_blank"
+                    >Twitter</a
+                >
+                <a href="https://www.instagram.com/ellipticobjs" target="_blank"
+                    >Instagram</a
+                >
                 <a href="https://fxg.bsky.social" target="_blank">Bluesky</a>
                 <a href="http://t.me/ellipticobj" target="_blank">Telegram</a>
-                <a href="http://discordapp.com/users/973943523655164032" target="_blank">Discord</a>
-                <a href="http://steamcommunity.com/id/ellipticobj" target="_blank">Steam</a>
-                <a href="http://anilist.co/user/ellipticobj" target="_blank">Anilist</a>
-                <a href="http://last.fm/user/ellipticobj" target="_blank">last.fm</a>
+                <a
+                    href="http://discordapp.com/users/973943523655164032"
+                    target="_blank"
+                    >Discord</a
+                >
+                <a
+                    href="http://steamcommunity.com/id/ellipticobj"
+                    target="_blank"
+                    >Steam</a
+                >
+                <a href="http://anilist.co/user/ellipticobj" target="_blank"
+                    >Anilist</a
+                >
+                <a href="http://last.fm/user/ellipticobj" target="_blank"
+                    >last.fm</a
+                >
             </div>
         </footer>
     </body>
