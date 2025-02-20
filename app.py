@@ -114,4 +114,4 @@ if __name__ == '__main__':
         app.run(host='luna.hackclub.app', port=7272, debug=True)
     else:
         from waitress import serve
-        serve(app, host="0.0.0.0", port=8080)
+        serve(app, host="0.0.0.0", port=7272)
