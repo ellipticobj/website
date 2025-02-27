@@ -14,17 +14,17 @@ projects = [
         ]
     },
     {
-        "name": "alpha",
-        "description": "a stace oriented programming language",
-        "links": [
-            {"label": "github", "url": "https://github.com/ellipticobj/alpha"}
-        ]
-    },
-    {
         "name": "cuter",
         "description": "a simple messenger app in the command line",
         "links": [
             {"label": "github", "url": "http://github.com/ellipticobj/cuter"}
+        ]
+    },
+    {
+        "name": "meow",
+        "description": "a 'replacement' for git's push, pull and commit commands i made for myself",
+        "links": [
+            {"label": "github", "url": "http://github.com/ellipticobj/meower"}
         ]
     },
     {
@@ -35,14 +35,21 @@ projects = [
         ]
     },
     {
-        "name": "material you pomodoro timer",
-        "description": "a pomodoro study timer app made using jetpack rompose in kotlin",
+        "name": "alpha",
+        "description": "a stack oriented programming language",
         "links": [
-            {"label": "github", "url": "http://github.com/ellipticobj/studytimer"}
+            {"label": "github", "url": "https://github.com/ellipticobj/alpha"}
         ]
     },
     {
-        "name": "random pip module",
+        "name": "AI documentation generator",
+        "description": "a program that analyzes code and uses ai to generate documentation for it",
+        "links": [
+            {"label": "github", "url": "http://github.com/nns-development/documentation-generator"}
+        ]
+    },
+    {
+        "name": "rng pip module",
         "description": "a small pip module that generates true random numbers using random.org's api",
         "links": [
             {"label": "github", "url": "http://github.com/ellipticobj/random-module"},
@@ -71,14 +78,6 @@ projects = [
             {"label": "luna.hackclub.app", "url": "http://luna.hackclub.app"}
         ]
     },
-    {
-        "name": "my github readme",
-        "description": "a readme for my github page that i used to learn more about gitHub actions",
-        "links": [
-            {"label": "github", "url": "http://github.com/ellipticobj/ellipticobj"},
-            {"label": "ellipticobj.github.io/ellipticobj", "url": "http://ellipticobj.github.io/ellipticobj"}
-        ]
-    }
 ]
 
 process = None
