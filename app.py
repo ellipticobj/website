@@ -1,6 +1,5 @@
-import os
-from flask import Flask, render_template
-from flask_cors import CORS, jsonify
+from flask import Flask, render_template, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
@@ -94,8 +93,6 @@ def projectspage():
 @app.route('/projects/json')
 @app.route('/projects/json/')
 def projectsapi():
-    projectdir = os.path.abspath('projects')
-    print(projectdir)
     return jsonify(projects)
 
 @app.route('/shells')
